@@ -38,6 +38,7 @@ class Stack {
       console.log(current.data)
       current = current.next
     }
+    return current
   }
 }
 
@@ -71,16 +72,16 @@ starTrek.push('Scotty')
 function is_palindrome(s) {
   s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
 
-  let palindrome = new Stack;
+  let stringStacked = new Stack;
   for (let letter of s){
-    palindrome.push(letter)
+    stringStacked.push(letter)
   } 
 
-  let check = ''
+  let reversedString = ''
   for (let i=0; i<s.length; i++){
-    check += palindrome.pop()
+    reversedString += stringStacked.pop()
   }
-  return check === s
+  return reversedString === s
 }
 
-console.log(is_palindrome("A man, a plan, a canal: Panama"));
+// console.log(is_palindrome("A man, a plan, a canal: Panama"));
