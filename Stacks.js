@@ -14,7 +14,7 @@ class Stack {
   push(data) {
     // if the stack is empty
     if (this.top === null) {
-      this.data = new _Node(data, null);
+      this.top = new _Node(data, null);
       return this.top;
     }
 
@@ -31,16 +31,56 @@ class Stack {
     this.top = node.next;
     return node.data;
   }
+
+  print(){
+    let current = this.top
+    while(current){
+      console.log(current.data)
+      current = current.next
+    }
+  }
 }
 
 const starTrek = new Stack
+
+function peek(stack) {
+  return stack.top.data
+}
+// console.log('Peeking-->',peek(starTrek))
+
+function isEmpty(stack) {
+  return stack.top === null ? true : false
+}
+// console.log('isEmpty-->',isEmpty(starTrek))
+
+function display(stack) {
+  return stack.top
+}
+
+// console.log('My Stack-->',display(starTrek))
+
+// console.log('isEmpty-->', isEmpty(starTrek))
 starTrek.push('Kirk')
-console.log(starTrek)
 starTrek.push('Spock')
-console.log(starTrek)
 starTrek.push('McCoy')
-console.log(starTrek)
 starTrek.push('Scotty')
-console.log(starTrek)
-// starTrek.pop()
-// console.log(starTrek)
+
+// console.log('My Stack-->', display(starTrek))
+// console.log('isEmpty-->', isEmpty(starTrek))
+
+function is_palindrome(s) {
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+
+  let palindrome = new Stack;
+  for (let letter of s){
+    palindrome.push(letter)
+  } 
+
+  let check = ''
+  for (let i=0; i<s.length; i++){
+    check += palindrome.pop()
+  }
+  return check === s
+}
+
+console.log(is_palindrome("A man, a plan, a canal: Panama"));
