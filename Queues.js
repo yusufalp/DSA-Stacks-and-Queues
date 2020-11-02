@@ -4,7 +4,7 @@ class _Node {
   constructor(value) {
     this.value = value;
     this.next = null;
-    this.prev = null;
+    // this.prev = null;
   }
 }
 
@@ -140,19 +140,19 @@ alpha.push('c')
 alpha.push('d')
 alpha.push('e')
 
-console.log(alpha)
+// console.log(alpha.print())
 
 function removeItem(queue) {
   const temp = new Stack();
 
   let current = queue.pop()
   while (current) {
-    console.log('value',current)
-    if(queue.top){
+    console.log('value', current)
+    if (queue.top) {
       temp.push(current)
     }
     current = queue.pop()
-  } 
+  }
   current = temp.pop()
   while (current) {
     queue.push(current)
@@ -161,4 +161,52 @@ function removeItem(queue) {
   return queue
 }
 
-console.log(removeItem(alpha).print())
+// console.log(removeItem(alpha).print())
+
+function spareDance(queue) {
+  let spare = new Queue();
+  let top = queue.first;
+  spare.enqueue(top.value)
+
+  while (top.next) {
+    if (top.value === 'F') {
+      if (top.next.value === 'M') {
+        top = top.next
+        spare.dequeue()
+      }
+    } else {
+      if (top.next.value === 'F') {
+        top = top.next
+        spare.dequeue()
+      }
+    }
+    if (top.next) {
+      top = top.next
+      spare.enqueue(top.value)
+    }
+  }
+  display(spare)
+}
+
+
+
+let danceList = new Queue();
+
+danceList.enqueue('M')
+danceList.enqueue('F')
+danceList.enqueue('M')
+danceList.enqueue('M')
+danceList.enqueue('M')
+danceList.enqueue('F')
+danceList.enqueue('M')
+danceList.enqueue('M')
+danceList.enqueue('F')
+danceList.enqueue('M')
+danceList.enqueue('F')
+danceList.enqueue('F')
+danceList.enqueue('M')
+
+console.log(display(danceList))
+console.log('----')
+
+spareDance(danceList)
